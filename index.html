@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chrono | Gestión de Tiempo y Objetivos</title>
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <!-- Iconos Phosphor -->
+  <script src="https://unpkg.com/@phosphor-icons/web"></script>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Fondo decorativo con gradientes ambientales -->
+  <div class="bg-orb orb-1"></div>
+  <div class="bg-orb orb-2"></div>
+  <div class="bg-orb orb-3"></div>
+
+  <div class="page-wrapper">
+    <!-- Encabezado con Navegación y Logo -->
+    <header class="top-nav glass-panel">
+      <a href="#top" class="brand">
+        <div class="brand-icon">
+          <i class="ph-fill ph-sparkle"></i>
+        </div>
+        <div>
+          <span class="brand-title">Chrono</span>
+          <small class="brand-subtitle">Organizador Inteligente</small>
+        </div>
+      </a>
+
+      <nav class="nav-links" aria-label="Navegación principal">
+        <a href="#heroSection">Inicio</a>
+        <a href="#dashboardSection">Agenda y Vistas</a>
+        <a href="#objectivesSection">Objetivos</a>
+      </nav>
+
+      <a href="#taskTitle" class="btn-nav-cta">
+        <i class="ph-bold ph-plus"></i> Nueva Tarea
+      </a>
+    </header>
+
+    <!-- Sección Hero -->
+    <section id="heroSection" class="hero-card glass-panel">
+      <div class="hero-content">
+        <span class="hero-tag"><i class="ph-fill ph-rocket-launch"></i> Productividad y Enfoque</span>
+        <h2>Elimina la improvisación y alinea tu agenda diaria con tus metas reales</h2>
+        <p>
+          Chrono centraliza tus actividades, controla el avance por día, semana o mes y conecta tu rutina con objetivos concretos de marketing, estudio y gestión operativa.
+        </p>
+        <div class="hero-actions">
+          <a href="#dashboardSection" class="btn-primary">
+            <i class="ph-bold ph-calendar-check"></i> Ir al Panel Principal
+          </a>
+          <a href="#objectivesSection" class="btn-secondary">
+            Ver Objetivos Activos
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Módulo Principal (Sidebar + Dashboard) -->
+    <div id="dashboardSection" class="app-container">
+      <!-- Barra Lateral / Panel de Control -->
+      <aside class="sidebar glass-panel">
+        <form id="taskForm" class="task-form">
+          <h2><i class="ph ph-plus-circle"></i> Nueva Actividad</h2>
+
+          <div class="form-group">
+            <label for="taskTitle">Nombre de la actividad</label>
+            <input type="text" id="taskTitle" placeholder="Ej. Campaña redes / Reunión..." required autocomplete="off" />
+          </div>
+
+          <div class="form-group">
+            <label for="taskCategory">Categoría</label>
+            <select id="taskCategory" required>
+              <option value="trabajo">💼 Trabajo / Negocio</option>
+              <option value="estudio">📚 Estudio / Universidad</option>
+              <option value="personal">✨ Personal / Bienestar</option>
+              <option value="salud">💪 Salud / Deporte</option>
+              <option value="urgente">🔥 Urgente / Prioritario</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="taskDate">Fecha</label>
+            <input type="date" id="taskDate" required />
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="taskTime">Hora inicio</label>
+              <input type="time" id="taskTime" required />
+            </div>
+            <div class="form-group">
+              <label for="taskEndTime">Hora fin</label>
+              <input type="time" id="taskEndTime" />
+            </div>
+          </div>
+
+          <button type="submit" class="btn-primary">
+            <i class="ph-bold ph-calendar-plus"></i> Agendar Actividad
+          </button>
+        </form>
+
+        <!-- Leyenda de Categorías -->
+        <div class="category-legend">
+          <h3>Categorías</h3>
+          <ul>
+            <li><span class="dot cat-trabajo"></span> Trabajo / Negocio</li>
+            <li><span class="dot cat-estudio"></span> Estudio / Universidad</li>
+            <li><span class="dot cat-personal"></span> Personal / Bienestar</li>
+            <li><span class="dot cat-salud"></span> Salud / Deporte</li>
+            <li><span class="dot cat-urgente"></span> Urgente / Prioritario</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- Área Principal del Dashboard -->
+      <main class="main-content">
+        <header class="dashboard-header glass-panel">
+          <div class="header-top">
+            <div class="date-navigator">
+              <button id="prevPeriodBtn" class="icon-btn" title="Anterior">
+                <i class="ph-bold ph-caret-left"></i>
+              </button>
+              <div class="current-period-info">
+                <h2 id="currentPeriodLabel">Cargando fecha...</h2>
+                <button id="todayBtn" class="btn-ghost">Ir a Hoy</button>
+              </div>
+              <button id="nextPeriodBtn" class="icon-btn" title="Siguiente">
+                <i class="ph-bold ph-caret-right"></i>
+              </button>
+            </div>
+
+            <!-- Selector de Vista (Día / Semana / Mes) -->
+            <div class="view-switcher">
+              <button class="view-btn active" data-view="day">Día</button>
+              <button class="view-btn" data-view="week">Semana</button>
+              <button class="view-btn" data-view="month">Mes</button>
+            </div>
+          </div>
+
+          <!-- Barra de Progreso y Estadísticas Rápidas -->
+          <div class="progress-section">
+            <div class="progress-header">
+              <span id="progressTitle">Rendimiento del periodo</span>
+              <div class="progress-stats">
+                <span id="completedCountBadge" class="stat-pill success">0 Completadas</span>
+                <span id="pendingCountBadge" class="stat-pill pending">0 Pendientes</span>
+                <strong id="progressPercentage">0%</strong>
+              </div>
+            </div>
+            <div class="progress-track">
+              <div id="progressBarFill" class="progress-fill" style="width: 0%;"></div>
+            </div>
+          </div>
+        </header>
+
+        <!-- Contenedor Dinámico de Vistas -->
+        <section id="calendarContainer" class="calendar-container glass-panel">
+          <!-- El contenido se inyecta dinámicamente desde app.js -->
+        </section>
+
+        <!-- Segunda Entidad desde data.json: Objetivos y Metas -->
+        <section id="objectivesSection" class="objectives-panel glass-panel">
+          <div class="objectives-header">
+            <div>
+              <h3><i class="ph-fill ph-target"></i> Objetivos y Metas Activas</h3>
+              <p>Seguimiento vinculado a tu base de datos local (`data.json`)</p>
+            </div>
+            <button type="button" id="resetDataBtn" class="btn-ghost" title="Restaurar datos iniciales desde data.json">
+              Restaurar Base
+            </button>
+          </div>
+          <div id="objectivesGrid" class="objectives-grid">
+            <!-- Se inyecta dinámicamente desde app.js -->
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <!-- Modal de Reprogramación -->
+  <div id="rescheduleModal" class="modal-overlay hidden">
+    <div class="modal-card glass-panel">
+      <div class="modal-header">
+        <div class="modal-icon warning">
+          <i class="ph-fill ph-clock-counter-clockwise"></i>
+        </div>
+        <div>
+          <h3>Reprogramar Actividad</h3>
+          <p>No pierdas el ritmo. Elige un nuevo momento para completarla.</p>
+        </div>
+      </div>
+
+      <div class="modal-task-preview">
+        <span id="modalTaskCategoryBadge" class="badge">Categoría</span>
+        <h4 id="modalTaskTitle">Nombre de la actividad</h4>
+        <small id="modalOldDateTime">Programada anteriormente: --/--/---- a las --:--</small>
+      </div>
+
+      <form id="rescheduleForm">
+        <input type="hidden" id="rescheduleTaskId" />
+        <div class="form-row">
+          <div class="form-group">
+            <label for="newTaskDate">Nueva Fecha</label>
+            <input type="date" id="newTaskDate" required />
+          </div>
+          <div class="form-group">
+            <label for="newTaskTime">Nueva Hora</label>
+            <input type="time" id="newTaskTime" required />
+          </div>
+        </div>
+
+        <div class="quick-reschedule">
+          <span>Atajos rápidos:</span>
+          <button type="button" class="chip-btn" data-offset="1">+1 Hora hoy</button>
+          <button type="button" class="chip-btn" data-offset="tomorrow">Mañana misma hora</button>
+        </div>
+
+        <div class="modal-actions">
+          <button type="button" id="cancelRescheduleBtn" class="btn-secondary">Cancelar</button>
+          <button type="submit" class="btn-primary">
+            <i class="ph-bold ph-calendar-check"></i> Confirmar Nuevo Horario
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Notificación Toast -->
+  <div id="toastNotification" class="toast hidden">
+    <i id="toastIcon" class="ph-fill ph-check-circle"></i>
+    <span id="toastMessage">Acción realizada</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

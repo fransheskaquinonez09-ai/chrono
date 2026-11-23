@@ -1,0 +1,52 @@
+{
+  "metadata": {
+    "appName": "Chrono",
+    "version": "1.0.0",
+    "area": "Marketing y Gestión del Tiempo"
+  },
+  "tasks": [
+    {
+      "id": "task-101",
+      "title": "Revisar calendario de contenido y metas semanales",
+      "category": "trabajo",
+      "date": "2026-11-23",
+      "time": "09:00",
+      "endTime": "10:00",
+      "completed": true,
+      "rescheduledCount": 0
+    },
+    {
+      "id": "task-102",
+      "title": "Preparar piezas y copys para campaña de lanzamiento",
+      "category": "estudio",
+      "date": "2026-11-23",
+      "time": "11:30",
+      "endTime": "13:00",
+      "completed": false,
+      "rescheduledCount": 0
+    }
+  ],
+  "objectives": [
+    {
+      "id": "obj-01",
+      "title": "Campaña de Fidelización MARVELLOUS",
+      "category": "trabajo",
+      "description": "Publicar piezas semanales y coordinar entregas locales en Valencia.",
+      "progress": 75
+    },
+    {
+      "id": "obj-02",
+      "title": "Entrega Final Bases de Programación",
+      "category": "estudio",
+      "description": "Completar arquitectura web, pruebas y documentación técnica.",
+      "progress": 85
+    },
+    {
+      "id": "obj-03",
+      "title": "Rutina de Bienestar y Enfoque",
+      "category": "personal",
+      "description": "Mantener bloques de descanso y revisión diaria sin saturación.",
+      "progress": 60
+    }
+  ]
+}
